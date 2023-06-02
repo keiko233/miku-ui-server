@@ -1,0 +1,16 @@
+{
+  "name": "miku-ui-server",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "app": "node ./src/index.js"
+  },
+  "keywords": [],
+  "author": "keiko233",
+  "dependencies": {
+    "@types/node": "^20.2.5",
+    "puppeteer": "^20.4.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
