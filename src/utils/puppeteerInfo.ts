@@ -1,7 +1,7 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
+import puppeteer from 'puppeteer';
+import db from '../utils/database';
 
-const regexInfo = (text) => {
+const regexInfo = (text: any) => {
   return {
     device: text.match(/<div[^>]*>([^<]*)\s*\(([^)]+)\)/)[2].trim(),
     name: text.match(/<div[^>]*>([^<]*)\s*\(([^)]+)\)/)[1].trim(),
@@ -19,7 +19,8 @@ const regexInfo = (text) => {
 
 puppeteer.launch({
   // slowMo: 500,
-  devtools: true
+  // devtools: true,
+  headless: "new"
 }).then(async browser => {
   const page = await browser.newPage();
   await page.goto('https://t.me/s/mikuuirelease');
@@ -35,13 +36,8 @@ puppeteer.launch({
     if (result[i] && /\([A-Za-z]+\)/.test(result[i])) jsonData.push(regexInfo(result[i]));
   }
 
-  console.log("jsonData:" + jsonData);
-
-  fs.writeFile('device.json', JSON.stringify(jsonData), (err) => {
-    if (err) {
-      throw err;
-    }
-    console.log("JSON data is saved.");
+  jsonData.forEach((item) => {
+    db.insertData(item);
   });
 
   await browser.close();
