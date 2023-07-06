@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
 import db from '../utils/database';
+import * as config from '../config.json';
 
 const regexInfo = (text: any) => {
   return {
@@ -18,9 +19,10 @@ const regexInfo = (text: any) => {
 };
 
 puppeteer.launch({
-  // slowMo: 500,
-  // devtools: true,
-  headless: "new"
+  // @ts-ignore
+  headless: config.puppeteer.headless,
+  devtools: config.puppeteer.devtools,
+  args: config.puppeteer.args
 }).then(async browser => {
   const page = await browser.newPage();
   await page.goto('https://t.me/s/mikuuirelease');

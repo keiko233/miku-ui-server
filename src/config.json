@@ -1,4 +1,12 @@
 {
   "data_path": "data/",
-  "database_file_name": "database.db"
+  "database_file_name": "database.db",
+  "puppeteer": {
+    "headless": "new",
+    "devtools": false,
+    "args": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ]
+  }
 }
