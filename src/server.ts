@@ -1,6 +1,8 @@
 import Koa from 'koa';
 import Router from 'koa-router';
+import cron from 'node-cron';
 import db from './utils/database';
+import { refreshDB } from './utils/puppeteer';
 
 const app = new Koa();
 const router = new Router();
@@ -34,4 +36,7 @@ app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
 
-
+cron.schedule('*/5 * * * *', () => {
+  console.log('refresh Database');
+  refreshDB();
+});
