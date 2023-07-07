@@ -66,12 +66,14 @@ class Database {
     return new Promise((resolve, reject) => {
       let query = 'SELECT * FROM devices';
       let params: any[] = [];
-
+  
       if (device) {
         query += ' WHERE device = ?';
         params.push(device);
       }
-
+  
+      query += ' ORDER BY version DESC';
+  
       this.db.all(query, params, (err, rows) => {
         if (err) {
           reject(err);
