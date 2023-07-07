@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import db from '../utils/database';
+import db from './database';
 import * as config from '../config.json';
 
 const regexInfo = (text: any) => {
@@ -18,29 +18,31 @@ const regexInfo = (text: any) => {
   };
 };
 
-puppeteer.launch({
-  // @ts-ignore
-  headless: config.puppeteer.headless,
-  devtools: config.puppeteer.devtools,
-  args: config.puppeteer.args
-}).then(async browser => {
-  const page = await browser.newPage();
-  await page.goto('https://t.me/s/mikuuirelease');
-  const result = await page.evaluate(async () => {
-    const content = document.getElementsByClassName('tgme_widget_message_text');
-    console.log(content);
-    return [...content].map(div => div.outerHTML);
+export const refreshDB = () => {
+  puppeteer.launch({
+    // @ts-ignore
+    headless: config.puppeteer.headless,
+    devtools: config.puppeteer.devtools,
+    args: config.puppeteer.args
+  }).then(async browser => {
+    const page = await browser.newPage();
+    await page.goto('https://t.me/s/mikuuirelease');
+    const result = await page.evaluate(async () => {
+      const content = document.getElementsByClassName('tgme_widget_message_text');
+      console.log(content);
+      return [...content].map(div => div.outerHTML);
+    });
+
+    const jsonData = [];
+
+    for (let i = result.length; i > 0; i--) {
+      if (result[i] && /\([A-Za-z]+\)/.test(result[i])) jsonData.push(regexInfo(result[i]));
+    }
+
+    jsonData.forEach((item) => {
+      db.insertData(item);
+    });
+
+    await browser.close();
   });
-
-  const jsonData = [];
-
-  for (let i = result.length; i > 0; i--) {
-    if (result[i] && /\([A-Za-z]+\)/.test(result[i])) jsonData.push(regexInfo(result[i]));
-  }
-
-  jsonData.forEach((item) => {
-    db.insertData(item);
-  });
-
-  await browser.close();
-});
+};

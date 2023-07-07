@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "",
   "scripts": {
-    "refresh-db": "ts-node ./src/utils/puppeteerInfo.ts",
+    "refresh-db": "ts-node ./src/scripts/refresh-db.ts",
     "app": "ts-node ./src/server.ts"
   },
   "author": "keiko233",
