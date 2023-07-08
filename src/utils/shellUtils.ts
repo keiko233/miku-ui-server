@@ -32,3 +32,15 @@ export const downloadFilesSequentially = async (files: string[]): Promise<void> 
     }
   }
 };
+
+export const downloadFilesConcurrency = async (files: string[]): Promise<void> => {
+  files.forEach(file => {
+    downloadFile(file, config.data_path)
+    .then(() => {
+      console.log('File downloaded successfully!');
+    })
+    .catch((error) => {
+      console.error('Error downloading file:', error);
+    });
+  });
+};
