@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "refresh-db": "ts-node ./src/scripts/refresh-db.ts",
-    "app": "ts-node ./src/server.ts"
+    "app": "ts-node ./src/server.ts",
+    "build": "tsc"
   },
   "author": "keiko233",
   "dependencies": {
