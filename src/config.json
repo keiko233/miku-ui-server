@@ -9,5 +9,9 @@
       "--disable-setuid-sandbox"
     ],
     "executablePath": ""
+  },
+  "quark": {
+    "cookie": "quark_cookie.json",
+    "folder": "divarelease"
   }
 }
