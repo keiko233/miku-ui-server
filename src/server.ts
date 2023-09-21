@@ -3,6 +3,8 @@ import Router from 'koa-router';
 import cron from 'node-cron';
 import db from './utils/database';
 import { refreshDB } from './utils/puppeteer';
+import { config } from './utils/config';
+import packageJson from '../package.json';
 
 const app = new Koa();
 const router = new Router();
@@ -27,6 +29,19 @@ router.get('/devices/:device', async (ctx) => {
     ctx.status = 500;
     ctx.body = { error: 'Internal Server Error' };
   }
+});
+
+router.get('/info', async (ctx) => {
+  const data = {
+    mirrors: [
+      {
+        type: 'quark',
+        url: config.quark.share_url
+      }
+    ],
+    version: packageJson.version
+  };
+  ctx.body = data;
 });
 
 app.use(router.routes()).use(router.allowedMethods());
