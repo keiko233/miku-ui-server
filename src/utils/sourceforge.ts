@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import * as config from '../config.json';
+import { config } from "./config";
 
 export const getSourceforgeFilesUrls = async (filesUrl: string) => {
   const browser = await puppeteer.launch({

@@ -1,5 +1,5 @@
 import sqlite3 from 'sqlite3';
-import * as config from '../config.json';
+import { config } from "./config";
 
 class Database {
   private db: sqlite3.Database;

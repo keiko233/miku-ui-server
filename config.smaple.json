@@ -2,8 +2,8 @@
   "data_path": "data/",
   "database_file_name": "database.db",
   "puppeteer": {
-    "headless": "new",
-    "devtools": false,
+    "headless": false,
+    "devtools": true,
     "args": [
       "--no-sandbox",
       "--disable-setuid-sandbox"
@@ -12,6 +12,7 @@
   },
   "quark": {
     "cookie": "quark_cookie.json",
-    "folder": "divarelease"
+    "folder": "divarelease",
+    "share_url": "http://localhost"
   }
 }

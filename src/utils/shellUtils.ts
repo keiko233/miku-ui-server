@@ -1,7 +1,7 @@
 import { exec } from 'child_process';
 import { join, dirname } from 'path';
 import { mkdirSync } from 'fs';
-import * as config from '../config.json';
+import { config } from "./config";
 
 export const downloadFile = (url: string, destination: string): Promise<void> => {
   return new Promise<void>((resolve, reject) => {

@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 import db from './database';
-import * as config from '../config.json';
+import { config } from "./config";
 
 const regexInfo = (text: any) => {
   return {

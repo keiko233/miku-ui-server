@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 import * as fs from "fs";
-import * as config from "../config.json";
+import { config } from "./config";
 
 const cookie = JSON.parse(
   fs.readFileSync(`${config.data_path}/${config.quark.cookie}`, "utf8")
