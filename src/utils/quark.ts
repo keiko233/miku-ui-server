@@ -13,7 +13,7 @@ export const uploadFile = (filePath: string, callback: Function) => {
       headless: config.puppeteer.headless,
       devtools: config.puppeteer.devtools,
       args: config.puppeteer.args,
-      executablePath: config.puppeteer.executablePath
+      executablePath: config.puppeteer.executablePath,
     })
     .then(async (browser) => {
       const page = await browser.newPage();
@@ -39,27 +39,25 @@ export const uploadFile = (filePath: string, callback: Function) => {
             ).textContent != "0"
               ? true
               : false;
-            
-          if (completed) return {
-            progress: null,
-            speed: null,
-            completed
-          };
 
-          const progressElement: HTMLImageElement = document
-            .querySelector(".task-row")
-            .querySelector(".widget-progress-inner");
-          const progress = parseFloat(progressElement.style.width);
+          const progressElement: HTMLImageElement = document.querySelector(
+            "div.widget-wide-progress.progress > div"
+          );
 
-          const speed = document
-            .querySelector(".status")
-            .querySelector(".speed-icon-wrap")
-            .querySelector("span").textContent;
+          const progress = parseFloat(
+            progressElement == null ? null : progressElement.style.width
+          );
+
+          const speedElement: HTMLImageElement = document.querySelector(
+            "div.task-row-content > span.status > div > span"
+          );
+
+          const speed = speedElement == null ? null : speedElement.textContent;
 
           return {
             progress,
             speed,
-            completed
+            completed,
           };
         });
 
@@ -68,6 +66,7 @@ export const uploadFile = (filePath: string, callback: Function) => {
         if (result.completed == true) {
           console.log("Upload completed.");
           clearInterval(interval);
+          await browser.close();
         }
       }, 1000);
     });
