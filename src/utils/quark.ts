@@ -6,8 +6,8 @@ const cookie = JSON.parse(
   fs.readFileSync(`${config.data_path}/${config.quark.cookie}`, "utf8")
 );
 
-export const uploadFile = (filePath: string, callback: Function) => {
-  puppeteer
+export const uploadFile = async (filePath: string, callback: Function) => {
+  await puppeteer
     .launch({
       // @ts-ignore
       headless: config.puppeteer.headless,

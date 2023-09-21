@@ -18,8 +18,8 @@ const download = async () => {
 
   let completedCount = 0;
 
-  filePaths.forEach((path: string) => {
-    uploadFile(
+  filePaths.forEach(async (path: string) => {
+    await uploadFile(
       path,
       (result: any) => {
         console.log(result);
