@@ -24,7 +24,8 @@ export const refreshDB = () => {
     headless: config.puppeteer.headless,
     devtools: config.puppeteer.devtools,
     args: config.puppeteer.args,
-    executablePath: config.puppeteer.executablePath
+    executablePath: config.puppeteer.executablePath,
+    protocolTimeout: config.puppeteer.protocolTimeout
   }).then(async browser => {
     const page = await browser.newPage();
     await page.goto('https://t.me/s/mikuuirelease');

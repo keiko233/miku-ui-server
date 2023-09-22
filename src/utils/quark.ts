@@ -14,6 +14,7 @@ export const uploadFile = async (filePath: string, callback: Function) => {
       devtools: config.puppeteer.devtools,
       args: config.puppeteer.args,
       executablePath: config.puppeteer.executablePath,
+      protocolTimeout: config.puppeteer.protocolTimeout
     })
     .then(async (browser) => {
       const page = await browser.newPage();

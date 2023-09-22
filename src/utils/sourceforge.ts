@@ -8,6 +8,7 @@ export const getSourceforgeFilesUrls = async (filesUrl: string) => {
     devtools: config.puppeteer.devtools,
     args: config.puppeteer.args,
     executablePath: config.puppeteer.executablePath,
+    protocolTimeout: config.puppeteer.protocolTimeout
   });
   
   const page = await browser.newPage();

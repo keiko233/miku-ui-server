@@ -8,7 +8,8 @@
       "--no-sandbox",
       "--disable-setuid-sandbox"
     ],
-    "executablePath": ""
+    "executablePath": "",
+    "protocolTimeout": 180000
   },
   "quark": {
     "cookie": "quark_cookie.json",
