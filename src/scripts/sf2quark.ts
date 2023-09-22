@@ -18,20 +18,24 @@ const download = async () => {
 
   let completedCount = 0;
 
-  filePaths.forEach(async (path: string) => {
-    await uploadFile(
-      path,
-      (result: any) => {
-        console.log(result);
-        if (result.completed) {
-          completedCount++;
-          if (completedCount == filePaths.length) {
-            deleteFolder(config.data_path + 'sourceforge.net')
+  async function uploadFiles() {
+    for (const path of filePaths) {
+      await new Promise<void>((resolve) => {
+        uploadFile(path, (result: any) => {
+          console.log(result);
+          if (result.completed) {
+            completedCount++;
+            if (completedCount === filePaths.length) {
+              deleteFolder(config.data_path + 'sourceforge.net');
+            }
+            resolve();
           }
-        }
-      }
-    );
-  });
+        });
+      });
+    }
+  };
+  
+  uploadFiles();
 };
 
 download();
