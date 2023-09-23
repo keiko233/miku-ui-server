@@ -15,5 +15,11 @@
     "cookie": "quark_cookie.json",
     "folder": "divarelease",
     "share_url": "http://localhost"
+  },
+  "aliyun": {
+    "cookie": "aliyun_cookie.json",
+    "token": "aliyun_token.json",
+    "folder": "divarelease",
+    "share_url": "http://localhost"
   }
 }
