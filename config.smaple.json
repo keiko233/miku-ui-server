@@ -19,6 +19,7 @@
   "aliyun": {
     "cookie": "aliyun_cookie.json",
     "token": "aliyun_token.json",
+    "drive_type": "resource",
     "folder": "divarelease",
     "share_url": "http://localhost"
   }
