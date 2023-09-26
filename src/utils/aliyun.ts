@@ -86,7 +86,7 @@ export const uploadFile = async (
       }, folderName);
 
       const newFolder = await page.waitForSelector(
-        `[title=${folderName}] > div > div:nth-child(3)`
+        `[title="${folderName}"] > div > div:nth-child(3)`
       );
       await newFolder.click();
 
