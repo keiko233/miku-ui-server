@@ -37,6 +37,10 @@ router.get('/info', async (ctx) => {
       {
         type: 'quark',
         url: config.quark.share_url
+      },
+      {
+        type: 'aliyun',
+        url: config.aliyun.share_url
       }
     ],
     version: packageJson.version
