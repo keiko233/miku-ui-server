@@ -72,7 +72,7 @@ class Database {
         params.push(device);
       }
   
-      query += ' ORDER BY version DESC';
+      query += ' ORDER BY date DESC';
   
       this.db.all(query, params, (err, rows) => {
         if (err) {
