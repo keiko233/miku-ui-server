@@ -6,7 +6,7 @@ const regexInfo = (text: any) => {
   return {
     device: text.match(/<div[^>]*>([^<]*)\s*\(([^)]+)\)/)[2].trim(),
     name: text.match(/<div[^>]*>([^<]*)\s*\(([^)]+)\)/)[1].trim(),
-    version: text.match(/Miku UI [A-Za-z]+\s+v(\d+\.\d+\.\d+(?:_\d+)?)/)[1],
+    version: text.match(/Miku UI ([A-Za-z]+\s+v\d+\.\d+\.\d+(?:_\d+)?)/)[1],
     android: text.match(/Android:\s*(\d+)\s*\([A-Za-z]\)/)[1],
     status: text.match(/Status: ([^<]*)/)[1].trim(),
     selinux: text.match(/SELinux:([^<]*)/)[1].trim(),
