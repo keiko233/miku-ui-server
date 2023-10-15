@@ -19,7 +19,7 @@ class Database {
       status TEXT,
       selinux TEXT,
       kernelsu TEXT,
-      data TEXT,
+      date TEXT,
       sourcforge_url TEXT,
       changelog TEXT,
       note TEXT
@@ -38,7 +38,7 @@ class Database {
         console.log('Data already exists in the database. Skipped insertion.');
       } else {
         const insertStmt = this.db.prepare(`INSERT INTO devices (
-          device, name, version, android, status, selinux, kernelsu, data, sourcforge_url, changelog, note
+          device, name, version, android, status, selinux, kernelsu, date, sourcforge_url, changelog, note
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
 
         insertStmt.run(
