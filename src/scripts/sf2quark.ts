@@ -8,13 +8,19 @@ const url = process.argv[2];
 
 const floderName = process.argv[3];
 
+const onlyUpload = process.argv[4] == '--only-upload' ? true : false;
+
 const download = async () => {
   const result = await getSourceforgeFilesUrls(url);
   console.log(result);
 
-  console.log('Staring download.');
-  await downloadFilesSequentially(result);
-  console.log('Download complete.');
+  if (!onlyUpload) {
+    console.log('Staring download.');
+    await downloadFilesSequentially(result);
+    console.log('Download complete.');
+  } else {
+    console.log('With --only-upload args.');
+  }
 
   const filePaths = readFilesInDirectory(config.data_path + 'sourceforge.net')
 
