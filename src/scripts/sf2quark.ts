@@ -6,6 +6,8 @@ import { config } from '../utils/config';
 
 const url = process.argv[2];
 
+const floderName = process.argv[3];
+
 const download = async () => {
   const result = await getSourceforgeFilesUrls(url);
   console.log(result);
@@ -16,26 +18,12 @@ const download = async () => {
 
   const filePaths = readFilesInDirectory(config.data_path + 'sourceforge.net')
 
-  let completedCount = 0;
-
-  async function uploadFiles() {
-    for (const path of filePaths) {
-      await new Promise<void>((resolve) => {
-        uploadFile(path, (result: any) => {
-          console.log(result);
-          if (result.completed) {
-            completedCount++;
-            if (completedCount === filePaths.length) {
-              deleteFolder(config.data_path + 'sourceforge.net');
-            }
-            resolve();
-          }
-        });
-      });
-    }
-  };
-  
-  uploadFiles();
+  await uploadFile(filePaths, floderName, (result: any) => {
+    console.log(result);
+    if (result.completed) {
+      deleteFolder(config.data_path + 'sourceforge.net');
+    };
+  });
 };
 
 download();
