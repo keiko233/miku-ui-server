@@ -97,34 +97,36 @@ export const uploadFile = async (
           );
 
           tasksElements.forEach((task) => {
-            const content = task.querySelector('div.task-row-content');
+            if (!task.querySelector('p.row-text')) {
+              const content = task.querySelector('div.task-row-content');
 
-            const fileName = content.querySelector(
-              'span.name'
-            ).textContent;
+              const fileName = content.querySelector(
+                'span.name'
+              ).textContent;
+  
+              const fileSize = content.querySelector(
+                'span.size'
+              ).textContent;
+  
+              const speedElement: HTMLImageElement = content.querySelector(
+                "span.status > div > span"
+              );
+              const speed = speedElement == null ? null : speedElement.textContent;
+  
+              const progressElement: HTMLImageElement = document.querySelector(
+                "div.widget-wide-progress.progress > div"
+              );
+              const progress = parseFloat(
+                progressElement == null ? null : progressElement.style.width
+              );
 
-            const fileSize = content.querySelector(
-              'span.size'
-            ).textContent;
-
-            const speedElement: HTMLImageElement = content.querySelector(
-              "span.status > div > span"
-            );
-            const speed = speedElement == null ? null : speedElement.textContent;
-
-            const progressElement: HTMLImageElement = document.querySelector(
-              "div.widget-wide-progress.progress > div"
-            );
-            const progress = parseFloat(
-              progressElement == null ? null : progressElement.style.width
-            );
-
-            tasks.push({
-              fileName,
-              fileSize,
-              speed,
-              progress,
-            });
+              tasks.push({
+                fileName,
+                fileSize,
+                speed,
+                progress,
+              });
+            };
           });
 
           return {
