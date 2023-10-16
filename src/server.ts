@@ -33,18 +33,20 @@ router.get('/devices/:device', async (ctx) => {
 
 router.get('/info', async (ctx) => {
   const data = {
-    mirrors: [
-      {
-        type: 'quark',
-        url: config.quark.share_url
-      },
-      {
-        type: 'aliyun',
-        url: config.aliyun.share_url
-      }
-    ],
+    mirrors: [],
     version: packageJson.version
   };
+
+  if (config.quark) data.mirrors.push({
+    type: 'quark',
+    url: config.quark.share_url
+  });
+
+  if (config.aliyun) data.mirrors.push({
+    type: 'aliyun',
+    url: config.aliyun.share_url
+  });
+
   ctx.body = data;
 });
 
