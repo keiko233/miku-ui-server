@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/database.db"
+}
+
+model devices {
+  id             Int     @id @default(autoincrement())
+  device         String
+  name           String
+  version        String
+  android        Int
+  status         String
+  selinux        String
+  kernelsu       Int
+  date           String
+  sourcforge_url String
+  changelog      String?
+  note           String?
+}

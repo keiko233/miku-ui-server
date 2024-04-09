@@ -1,0 +1,28 @@
+{
+  "name": "miku-ui-server",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "puppeteer": "tsx ./src/puppeteer.ts",
+    "app": "tsx ./src/main.ts"
+  },
+  "author": "keiko233",
+  "dependencies": {
+    "@prisma/client": "5.12.1",
+    "@types/koa": "^2.15.0",
+    "@types/koa-router": "^7.4.8",
+    "@types/node-cron": "^3.0.11",
+    "@types/sqlite3": "^3.1.11",
+    "koa": "^2.15.2",
+    "koa-router": "^12.0.1",
+    "node-cron": "^3.0.3",
+    "puppeteer": "^22.6.3",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.6",
+    "prisma": "^5.12.1",
+    "tsc": "^2.0.4",
+    "typescript": "^5.4.4"
+  }
+}
