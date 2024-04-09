@@ -12,7 +12,11 @@ const router = new Router();
 
 router.get("/devices", async (ctx) => {
   try {
-    ctx.body = await prisma.devices.findMany();
+    ctx.body = await prisma.devices.findMany({
+      orderBy: {
+        id: "desc",
+      },
+    });
   } catch (error) {
     ctx.status = 500;
     ctx.body = { error: "Internal Server Error" };
